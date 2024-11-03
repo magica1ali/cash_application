@@ -18,4 +18,5 @@ detail_file = st.file_uploader("Select Corresponding Details Report. Choose a CS
 #### Display remittance detail file
 
 st.title("Remittance Detail")
-st.write(remittance_files)
+remit = pd.read_csv(remittance_files)
+st.write(remit)
