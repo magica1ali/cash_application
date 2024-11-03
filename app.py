@@ -30,7 +30,9 @@ detail = pd.read_csv(detail_file)
 
 remit['poMatch']  = remit['Invoice Number']
 detail['poMatch']  = detail['Purchase Order Number']
+remit_review = remit[['poMatch','Amount Paid($)','Store Number','Invoice Date']]
+remit_review = detail[['poMatch','Ship-To Customer Name','Invoice Number','Requested Delivery Date']]
 
-dataload = pd.merge(remit,detail, on='poMatch', how ='inner')
+dataload = pd.merge(remit_review,remit_review, on='poMatch', how ='left')
 
 st.write(dataload)
