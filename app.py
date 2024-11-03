@@ -31,6 +31,6 @@ detail = pd.read_csv(detail_file)
 remit['poMatch']  = remit['Invoice Number']
 detail['poMatch']  = detail['Purchase Order Number']
 
-dataload = pd.merge(remit,detail, on='poMatch', how ='left')
+dataload = pd.merge(remit,detail, on='poMatch', how ='inner')
 
 st.write(dataload)
