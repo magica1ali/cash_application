@@ -30,7 +30,6 @@ detail = pd.read_csv(detail_file)
 
 remit['poMatch']  = remit['Invoice Number']
 detail['poMatch']  = detail['Purchase Order Number']
-detail['poMatch'] = detail['poMatch'].astype(float)
 remit_review = remit[['poMatch','Amount Paid($)','Store Number','Invoice Date']]
 detail_review = detail[['poMatch','Ship-To Customer Name','Invoice Number','Requested Delivery Date']]
 
