@@ -15,4 +15,11 @@ remittance_files = st.file_uploader("Select Walmart Remittance Detail. Choose a 
 #### Create a file uploader for DG detail file in your Streamlit app ####
 detail_file = st.file_uploader("Select Corresponding Details Report. Choose a CSV File", type ='csv', accept_multiple_files=False)
 
+#### Read CSV files 
 
+remit = pd.read_csv('remittance_files')
+
+#### Display remittance detail file
+
+st.title("Remittance Detail")
+st.write(remit)
