@@ -9,9 +9,10 @@ st.title("Streamlit App for Walmart Cash Application")
 
 # Ingest Data 
 
-####Create a file uploader in your Streamlit app
-uploaded_files = st.file_uploader("Choose a CVS file", type='cvs', accept_multiple_files=True)
+#### Create a file uploader for remittance file in your Streamlit app ####
+remittance_files = st.file_uploader("Select Walmart Remittance Detail. Choose a CSV file", type='csv', accept_multiple_files=False)
 
-if uploaded_files:
-    for uploaded_file in uploaded_files:
-        st.write("Filename: ", uploaded_file.name)
+#### Create a file uploader for DG detail file in your Streamlit app ####
+detail_file = st.file_uploader("Select Corresponding Details Report. Choose a CSV File", type ='csv', accept_multiple_files=False)
+
+
