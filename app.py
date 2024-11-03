@@ -35,4 +35,5 @@ detail_review = detail[['poMatch','Ship-To Customer Name','Invoice Number','Requ
 
 dataload = pd.merge(remit_review,detail_review, on='poMatch', how ='left')
 
-st.write(dataload)
+st.write(remit_review )
+st.write(detail_review)
