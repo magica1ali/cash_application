@@ -15,20 +15,20 @@ remittance_file = st.file_uploader("Select Walmart Remittance Detail. Choose a C
 #### Create a file uploader for DG detail file in your Streamlit app ####
 detail_file = st.file_uploader("Select Corresponding Details Report. Choose a CSV File", type ='csv', accept_multiple_files=False)
 
-#### Display remittance detail file
+#### Store remittance detail file
 
 st.title("Remittance Detail")
 remit = pd.read_csv(remittance_file)
-st.write(remit)
 
-#### Display Details Report 
+#### Store Details Report 
 st.title("Details Report")
 detail = pd.read_csv(detail_file)
-st.write(detail)
 
 # Combine into New Detail Frame
 
 #### Merge()  VLOOKUP Equivalent
 
 remit['poMatch']  = remit['Invoice Number']
+detail['poMatch']  = detail['Purchase Order Number']
 st.write(remit)
+st.write(detail)
