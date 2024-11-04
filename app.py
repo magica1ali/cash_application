@@ -18,11 +18,10 @@ detail_file = st.file_uploader("Select Corresponding Details Report. Choose a CS
 
 #### Store remittance detail file
 
-st.title("Remittance Detail")
 remit = pd.read_csv(remittance_file)
 
 #### Store Details Report 
-st.title("Details Report")
+
 detail = pd.read_csv(detail_file)
 
 # Combine into New Detail Frame
@@ -35,7 +34,8 @@ remit['poMatch'] = remit['poMatch'].str.replace(r'\.0$', '', regex=True)
 remit_review = remit[['poMatch','Amount Paid($)']]
 detail_review = detail[['Invoice Number','poMatch']]
 
+st.title("Merged Datae-frame")
 dataload = remit_review.merge(detail_review, on='poMatch', how ='left')
 st.write(dataload.shape)
-#st.write(remit_review.shape)
-#st.write(detail_review.shape)
+st.write(remit_review.shape)
+st.write(detail_review.shape)
