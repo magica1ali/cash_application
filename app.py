@@ -30,7 +30,7 @@ detail = pd.read_csv(detail_file)
 ####Clean Detail Report 
 
 def remove_letters(df,column_name):
-    df.column_name = df.column_name.str.replace(r'[a-zA-Z]', '', regex=True)
+    df['column_name'] = df.column_name.object.replace(r'[a-zA-Z]', '', regex=True)
     return df
 
 #### Merge()  VLOOKUP Equivalent
