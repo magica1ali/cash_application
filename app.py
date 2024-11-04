@@ -35,15 +35,15 @@ remit['poMatch'] = remit['poMatch'].str.replace(r'\.0$', '', regex=True)
 
 ### Save new data frames to be merged 
 remit_review = remit[['poMatch','Amount Paid($)','Invoice Date','Store Number','DEDUCTION CODE']]
-detail_review = detail[['Invoice Number','poMatch']]
+detail_review = detail[['Invoice Number','poMatch','Ship-To Customer Name']]
 
 
-dataload = remit_review.merge(detail_review, on='poMatch', how ='left')
+mergeFile = remit_review.merge(detail_review, on='poMatch', how ='left')
 
 ### Remove duplicates 
-dataload_cleaned = dataload.drop_duplicates()
+mergeFile_cleaned = mergeFile.drop_duplicates()
 
 
 ## Download Data 
 st.title("Merged Data Load")
-st.write(dataload_cleaned)
+st.write(mergeFile_cleaned)
