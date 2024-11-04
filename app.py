@@ -40,7 +40,7 @@ detail['poMatch']  = detail['Purchase Order Number']
 remit_review = remit[['poMatch','Amount Paid($)','Store Number']]
 detail_review = detail[['poMatch','Ship-To Customer Name','Invoice Number','Requested Delivery Date']]
 
-detail_review['poMatch'] = remove_letters[detail_review,poMatch]
+detail_review['poMatch'] = remove_letters[detail_review,detail_review.poMatch]
 #dataload = pd.merge(remit_review, detail_review on='poMatch', how ='outer')
 #st.write(dataload)
 st.write(remit_review['poMatch'].dtypes )
