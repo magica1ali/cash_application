@@ -28,12 +28,12 @@ detail = pd.read_csv(detail_file)
 
 #### Merge()  VLOOKUP Equivalent
 
-remit['poMatch']  = remit['Invoice Number'].astype('object')
-detail['poMatch']  = detail['Purchase Order Number']
+remit['poMatch']  = remit['Invoice Number'].astype('string')
+detail['poMatch']  = detail['Purchase Order Number'].astype('string')
 remit_review = remit[['poMatch','Amount Paid($)','Store Number','Invoice Date']]
 detail_review = detail[['poMatch','Ship-To Customer Name','Invoice Number','Requested Delivery Date']]
 
-dataload = pd.merge(detail_review,remit_review, on='poMatch', how ='left')
+dataload = pd.merge(remit_review,detail_review on='poMatch', how ='left')
 st.write(dataload)
 #st.write(remit['poMatch'].dtypes )
 #st.write(detail['poMatch'].dtypes)
