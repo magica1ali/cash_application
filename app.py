@@ -29,8 +29,8 @@ detail = pd.read_csv(detail_file)
 
 #### Merge()  VLOOKUP Equivalent
 
-remit['poMatch']  = remit['Invoice Number'].astype('string')
-detail['poMatch']  = detail['Purchase Order Number'].astype('string')
+remit['poMatch']  = remit['Invoice Number'].astype('float')
+detail['poMatch']  = detail['Purchase Order Number'].astype('float')
 remit_review = remit[['poMatch','Amount Paid($)']]
 detail_review = detail[['Invoice Number','poMatch']]
 
