@@ -37,7 +37,7 @@ detail = remove_letters(detail,'Purchase Order Number')
 #### Merge()  VLOOKUP Equivalent
 
 remit['poMatch']  = remit['Invoice Number']
-detail['poMatch']  = detail['Purchase Order Number'].astype('float')
+detail['poMatch']  = detail['Purchase Order Number']
 remit_review = remit[['poMatch','Amount Paid($)','Store Number']]
 detail_review = detail[['poMatch','Ship-To Customer Name','Invoice Number','Requested Delivery Date']]
 
