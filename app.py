@@ -35,7 +35,7 @@ remit_review = remit[['poMatch','Amount Paid($)']]
 detail_review = detail[['poMatch','Invoice Number']]
 
 
-dataload = remit_review.merge(detail_review, on='poMatch', how ='right')
+dataload = remit_review.merge(detail_review, on='poMatch', how ='left')
 st.write(dataload)
 #st.write(remit_review['poMatch'].dtypes )
 #st.write(remit_review['poMatch'])
