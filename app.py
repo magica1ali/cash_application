@@ -26,10 +26,18 @@ detail = pd.read_csv(detail_file)
 
 # Combine into New Detail Frame
 
+####Clean Detail Report 
+
+def remove_letters(df,column_name):
+    df.column_name = df.column_name.str.replace(r'[a-zA-Z]', '', regex=True)
+    return df)
+
+detail = remove_letters(detail,'Purchase Order Number')
+
 #### Merge()  VLOOKUP Equivalent
 
-remit['poMatch']  = remit['Invoice Number'].astype('string')
-detail['poMatch']  = detail['Purchase Order Number'].astype('string')
+remit['poMatch']  = remit['Invoice Number']
+detail['poMatch']  = detail['Purchase Order Number'].astype('float')
 remit_review = remit[['poMatch','Amount Paid($)','Store Number']]
 detail_review = detail[['poMatch','Ship-To Customer Name','Invoice Number','Requested Delivery Date']]
 
