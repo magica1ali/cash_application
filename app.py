@@ -44,7 +44,7 @@ mergeFile = remit_review.merge(detail_review, on='poMatch', how ='left')
 mergeFile_cleaned = mergeFile.drop_duplicates()
 
 def walmart_dc(df):
-    if  df['Invoice Number'].isnull()
+    if  df['Invoice Number'].isnull():
     print("Needs Review")  
 ## Download Data 
 st.title("Merged Data Load")
