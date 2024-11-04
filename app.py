@@ -31,7 +31,7 @@ detail = pd.read_csv(detail_file)
 
 remit['poMatch']  = remit['Invoice Number'].astype('string')
 detail['poMatch']  = detail['Purchase Order Number'].astype('string')
-remit['poMatch'] = remit['poMatch'].rstrip(".0")
+remit['poMatch'] = remit['poMatch'].str.replace(r'\.0$', '', regex=True)
 remit_review = remit[['poMatch','Amount Paid($)']]
 detail_review = detail[['Invoice Number','poMatch']]
 
