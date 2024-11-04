@@ -43,7 +43,7 @@ mergeFile = remit_review.merge(detail_review, on='poMatch', how ='left')
 ### Remove duplicates 
 mergeFile_cleaned = mergeFile.drop_duplicates()
 
-def walmart_dc(df):
+def needs_review(df):
     # Fill empty Invoice Number values with "Needs Review"
     df['Invoice Number'] = df['Invoice Number'].fillna("Needs Review")
     return df  
@@ -51,5 +51,5 @@ def walmart_dc(df):
 ## Download Data 
 st.title("Merged Data Load")
 
-mergeFile_cleaned = walmart_dc(mergeFile_cleaned)
+mergeFile_cleaned = needs_review(mergeFile_cleaned)
 st.write(mergeFile_cleaned)
