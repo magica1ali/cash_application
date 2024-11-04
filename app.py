@@ -30,7 +30,7 @@ detail = pd.read_csv(detail_file)
 
 def remove_letters(df,column_name):
     df.column_name = df.column_name.str.replace(r'[a-zA-Z]', '', regex=True)
-    return df)
+    return df
 
 detail = remove_letters(detail,'Purchase Order Number')
 
