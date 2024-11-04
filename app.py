@@ -34,7 +34,7 @@ detail['poMatch']  = detail['Purchase Order Number'].astype('string')
 remit['poMatch'] = remit['poMatch'].str.replace(r'\.0$', '', regex=True)
 
 ### Save new data frames to be merged 
-remit_review = remit[['poMatch','Amount Paid($)']]
+remit_review = remit[['poMatch','Amount Paid($)','Invoice Date','Store Number','DEDUCTION CODE']]
 detail_review = detail[['Invoice Number','poMatch']]
 
 
@@ -44,6 +44,6 @@ dataload = remit_review.merge(detail_review, on='poMatch', how ='left')
 dataload_cleaned = dataload.drop_duplicates()
 
 
-## Down Data 
+## Download Data 
 st.title("Merged Datae-frame")
 st.write(dataload_cleaned)
