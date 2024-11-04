@@ -45,5 +45,5 @@ dataload_cleaned = dataload.drop_duplicates()
 
 
 ## Download Data 
-st.title("Merged Datae-frame")
+st.title("Merged Data Load")
 st.write(dataload_cleaned)
