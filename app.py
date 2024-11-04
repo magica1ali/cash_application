@@ -41,5 +41,6 @@ dataload_cleaned = dataload.drop_duplicates()
 
 #### Check Shape of data 
 st.write(dataload.shape)
+st.write(dataload_cleaned.shape)
 st.write(remit_review.shape)
 st.write(detail_review.shape)
