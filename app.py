@@ -2,7 +2,7 @@
 import pandas as pd
 import numpy as np 
 import streamlit as st
-import re 
+
 
 #Title
 
@@ -26,14 +26,6 @@ st.title("Details Report")
 detail = pd.read_csv(detail_file)
 
 # Combine into New Detail Frame
-
-####Clean Detail Report 
-
-def remove_letters(df,column_name):
-    df.column_name = df.column_name.str.replace(r'[a-zA-Z]', '', regex=True)
-    return df
-
-detail = remove_letters(detail,'Purchase Order Number')
 
 #### Merge()  VLOOKUP Equivalent
 
