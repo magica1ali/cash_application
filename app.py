@@ -33,8 +33,6 @@ def remove_letters(df,column_name):
     df.column_name = df.column_name.str.replace(r'[a-zA-Z]', '', regex=True)
     return df
 
-detail = remove_letters(detail,'Purchase Order Number')
-
 #### Merge()  VLOOKUP Equivalent
 
 remit['poMatch']  = remit['Invoice Number']
@@ -44,5 +42,5 @@ detail_review = detail[['poMatch','Ship-To Customer Name','Invoice Number','Requ
 
 #dataload = pd.merge(remit_review, detail_review on='poMatch', how ='outer')
 #st.write(dataload)
-st.write(remit['poMatch'].dtypes )
-st.write(detail['poMatch'].dtypes)
+st.write(remit_review['poMatch'].dtypes )
+st.write(detail_review['poMatch'].dtypes)
