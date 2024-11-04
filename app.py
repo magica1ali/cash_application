@@ -36,6 +36,10 @@ detail_review = detail[['Invoice Number','poMatch']]
 
 st.title("Merged Datae-frame")
 dataload = remit_review.merge(detail_review, on='poMatch', how ='left')
+#### Remove duplicates 
+dataload_cleaned = dataload.drop_duplicates()
+
+#### Check Shape of data 
 st.write(dataload.shape)
 st.write(remit_review.shape)
 st.write(detail_review.shape)
