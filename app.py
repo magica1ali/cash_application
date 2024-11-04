@@ -31,11 +31,11 @@ detail = pd.read_csv(detail_file)
 
 remit['poMatch']  = remit['Invoice Number'].astype('string')
 detail['poMatch']  = detail['Purchase Order Number'].astype('string')
-remit['poMatch'] = string.rstrip('.0')
+#remit['poMatch'] = string.rstrip(".0")
 remit_review = remit[['poMatch','Amount Paid($)']]
 detail_review = detail[['Invoice Number','poMatch']]
 
 dataload = remit_review.merge(detail_review, on='poMatch', how ='left')
 st.write(dataload)
 #st.write(remit_review['poMatch'].dtypes )
-#st.write(detail_review['poMatch'])
+st.write(detail_review['poMatch'])
