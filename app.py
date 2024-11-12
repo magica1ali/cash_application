@@ -54,7 +54,7 @@ def needs_review(df):
 dc = 8011
 
 def dc_location(df):
-    df.loc[df['Store Number'] == dc, 'Invoice Number'] = df['poMatch']
+    df.loc[df['Store Number'] == dc, 'Invoice Number'] = df['poMatch'].str.replace(r'\.0$', '', regex=True)
     return df
 
 ## Download Data 
