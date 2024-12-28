@@ -16,53 +16,50 @@ remittance_file = st.file_uploader("Select Walmart Remittance Detail. Choose a C
 ### Create a file uploader for DG detail file in your Streamlit app ####
 detail_file = st.file_uploader("Select Corresponding Details Report. Choose a CSV File", type ='csv', accept_multiple_files=False)
 
+if remittance_file is not None and detail_file is not None:
 ### Store remittance detail file
 
-remit = pd.read_csv(remittance_file)
+    remit = pd.read_csv(remittance_file)
 
-### Store Details Report 
+    # Store Details Report
+    detail = pd.read_csv(detail_file)
 
-detail = pd.read_csv(detail_file)
+    ## Merge()  VLOOKUP Equivalent
+    # Change data type to string
+    remit['poMatch'] = remit['Invoice Number'].astype('string')
+    detail['poMatch'] = detail['Purchase Order Number'].astype('string')
 
-## Merge()  VLOOKUP Equivalent
+    # Clean up string to remove '.0'
+    remit['poMatch'] = remit['poMatch'].str.replace(r'\.0$', '', regex=True)
 
-### Change data type to string
-remit['poMatch']  = remit['Invoice Number'].astype('string')
-detail['poMatch']  = detail['Purchase Order Number'].astype('string')
+    # Save new data frames to be merged
+    remit_review = remit[['poMatch', 'Amount Paid($)', 'Invoice Date', 'Store Number', 'DEDUCTION CODE']]
+    detail_review = detail[['Invoice Number', 'poMatch', 'Ship-To Customer Name']]
 
-### Clean up string to remove '.0'
-remit['poMatch'] = remit['poMatch'].str.replace(r'\.0$', '', regex=True)
+    mergeFile = remit_review.merge(detail_review, on='poMatch', how='left')
 
-### Save new data frames to be merged 
-remit_review = remit[['poMatch','Amount Paid($)','Invoice Date','Store Number','DEDUCTION CODE']]
-detail_review = detail[['Invoice Number','poMatch','Ship-To Customer Name']]
+    # Remove duplicates
+    mergeFile_cleaned = mergeFile.drop_duplicates()
 
+    # Needs Review Function
+    def needs_review(df):
+        # Fill empty Invoice Number values with "Needs Review"
+        df['Invoice Number'] = df['Invoice Number'].fillna("Needs Review")
+        return df  
 
-mergeFile = remit_review.merge(detail_review, on='poMatch', how ='left')
+    # Define DC Location Function
+    dc = 8011
 
-### Remove duplicates 
-mergeFile_cleaned = mergeFile.drop_duplicates()
+    def dc_location(df):
+        df.loc[df['Store Number'] == dc, 'Invoice Number'] = df['poMatch'].str.replace(r'\.0$', '', regex=True)
+        return df
 
-#Needs Review Function
-def needs_review(df):
-    # Fill empty Invoice Number values with "Needs Review"
-    df['Invoice Number'] = df['Invoice Number'].fillna("Needs Review")
-    return df  
+    # Download Data
+    st.title("Merged Data Load")
 
-#Define DC Location Function
+    mergeFile_cleaned = needs_review(mergeFile_cleaned)
+    dc_defined = dc_location(mergeFile_cleaned)
 
-dc = 8011
-
-def dc_location(df):
-    df.loc[df['Store Number'] == dc, 'Invoice Number'] = df['poMatch'].str.replace(r'\.0$', '', regex=True)
-    return df
-
-## Download Data 
-st.title("Merged Data Load")
-
-mergeFile_cleaned = needs_review(mergeFile_cleaned)
-dc_defined = dc_location(mergeFile_cleaned)
-
-#Delay upload 
-if remittance_file is not None and detail_file is not None:
     st.write(dc_defined)
+else:
+    st.write("Please upload both files to proceed.")
