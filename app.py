@@ -63,3 +63,5 @@ if remittance_file is not None and detail_file is not None:
     st.write(dc_defined)
 else:
     st.write("Please upload both files to proceed.")
+
+
