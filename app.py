@@ -64,5 +64,5 @@ mergeFile_cleaned = needs_review(mergeFile_cleaned)
 dc_defined = dc_location(mergeFile_cleaned)
 
 #Delay upload 
-if remit_review is not None and detail_review is not None:
+if remittance_file is not None and detail_file is not None:
     st.write(dc_defined)
